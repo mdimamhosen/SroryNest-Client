@@ -87,11 +87,11 @@ const AllBooks = () => {
   }
 
   return (
-    <div className="bg-[#0A111D] mt-10 max-h-[100vh]">
+    <div className="bg-[#0A111D] mt-10 min-h-[100vh]">
       <div className="w-11/12 max-w-7xl mx-auto py-12">
         <h2 className="text-white text-3xl font-semibold mb-6">All Books</h2>
         {/* Responsive Table Container */}
-        <div className="overflow-x-auto overflow-y-auto max-h-[70vh]">
+        <div className="overflow-x-auto overflow-y-auto min-h-[70vh]">
           <table className="w-full text-left table-auto border-collapse">
             <thead>
               <tr>
