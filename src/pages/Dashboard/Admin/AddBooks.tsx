@@ -67,7 +67,16 @@ const AddBooks = () => {
 
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      setBookData((prev) => ({ ...prev, file: e.target.files![0] }));
+      const file = e.target.files[0];
+      const allowedTypes = ["image/jpeg", "image/png"];
+
+      if (!allowedTypes.includes(file.type)) {
+        toast.error("Only JPG or PNG images are allowed!");
+        e.target.value = "";
+        return;
+      }
+
+      setBookData((prev) => ({ ...prev, file: file }));
     }
   };
 

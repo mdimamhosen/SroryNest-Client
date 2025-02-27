@@ -186,7 +186,7 @@ const Books = () => {
           <div className="flex gap-4">
             {meta && (meta.page ?? 0) > 1 && (
               <button
-                className="bg-blue-600 text-white px-4 py-2 rounded-full"
+                className="bg-yellow-400 text-black p-1"
                 onClick={() => handlePageChange(meta.page - 1)}
               >
                 Previous
@@ -194,7 +194,7 @@ const Books = () => {
             )}
             {meta && meta.page < meta.totalPage && (
               <button
-                className="bg-blue-600 text-white px-4 py-2 rounded-full"
+                className="bg-yellow-400 text-black p-1  "
                 onClick={() => handlePageChange(meta.page + 1)}
               >
                 Next
