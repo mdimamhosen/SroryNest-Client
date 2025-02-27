@@ -40,9 +40,9 @@ const router = createBrowserRouter([
       {
         path: "books/:id",
         element: (
-          <ProtectedRoute>
-            <BookDetails />
-          </ProtectedRoute>
+          // <ProtectedRoute>
+          <BookDetails />
+          // </ProtectedRoute>
         ),
       },
       {
