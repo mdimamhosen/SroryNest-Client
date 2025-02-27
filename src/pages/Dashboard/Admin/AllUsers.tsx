@@ -28,7 +28,7 @@ const AllUsers = () => {
 
   if (isLoading) {
     return (
-      <div className="bg-[#0A111D] text-white flex justify-center items-center h-screen">
+      <div className="bg-[#0F172A] text-white flex justify-center items-center h-screen">
         Loading...
       </div>
     );
