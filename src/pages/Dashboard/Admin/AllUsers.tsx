@@ -46,14 +46,14 @@ const AllBooks = () => {
   }
 
   return (
-    <div className="bg-[#0A111D] mt-10 px-4 md:px-8">
+    <div className="bg-[#0A111D] mt-10 px-4 md:px-8 max-h-[100vh]">
       <div className="w-full max-w-7xl mx-auto py-12">
         <h2 className="text-white text-2xl md:text-3xl font-semibold mb-6">
           All Books
         </h2>
 
         {/* Responsive Table Wrapper */}
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto overflow-y-auto max-h-[60vh]">
           <table className="min-w-full text-left border-collapse">
             <thead>
               <tr className="bg-gray-800">

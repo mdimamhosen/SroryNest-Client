@@ -39,9 +39,9 @@ const ManageOrder = () => {
   };
 
   return (
-    <div className="mt-10 px-4 md:px-8">
+    <div className="mt-10 px-4 md:px-8 max-h-[100vh]">
       <h1 className=" font-bold text-gray-200 text-4xl ">View All Orders</h1>
-      <div className="overflow-x-auto mt-6">
+      <div className="overflow-x-auto mt-6 overflow-y-auto max-h-[60vh]">
         <table className="min-w-full bg-black border border-gray-200 rounded-lg shadow-md">
           <thead>
             <tr className="bg-gray-800 text-white">

@@ -34,12 +34,12 @@ const ViewOrders = () => {
   }
 
   return (
-    <div className="  min-h-screen p-4">
+    <div className="  min-h-screen p-4 max-h-[100vh]]">
       <h1 className="text-3xl font-bold text-center text-white mb-6">
         Your Orders
       </h1>
 
-      <div className="overflow-x-auto">
+      <div className="overflow-x-auto overflow-y-auto max-h-[60vh]">
         <table className=" w-[70%] px-2 mx-auto bg-gray-950 text-white rounded-lg overflow-hidden">
           <thead>
             <tr className="bg-gray-700">
