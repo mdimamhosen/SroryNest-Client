@@ -6,6 +6,17 @@ type TAuthState = {
   token: null | string;
 };
 
+export interface IUser {
+  name: string;
+  id: string;
+  _id: string;
+  email: string;
+  isBlocked: boolean;
+  isDeleted: boolean;
+  role: string;
+  createdAt: string;
+}
+
 export interface IUSer {
   id: string;
   role: string;

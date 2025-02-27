@@ -1,10 +1,10 @@
+import { IUser } from "@/redux/features/auth/authSlice";
 import {
   useAllUsersQuery,
   useUpdateUserMutation,
 } from "@/redux/features/createUser/createUser.API";
 import { useEffect } from "react";
 import { toast } from "sonner";
-import { IUser } from "../../../../../server/src/app/modules/user/user.interface";
 
 const AllUsers = () => {
   const { data, error, isLoading, refetch } = useAllUsersQuery(undefined);
