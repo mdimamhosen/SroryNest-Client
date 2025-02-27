@@ -65,36 +65,34 @@ const AllUsers = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.data?.data
-                ?.filter((user: IUser) => !user.isDeleted)
-                .map((user: IUser) => (
-                  <tr
-                    key={user.id}
-                    className="border-b border-gray-700 hover:bg-gray-900 transition"
-                  >
-                    <td className="p-3 text-white text-sm md:text-base">
-                      {user.name}
-                    </td>
-                    <td className="p-3 text-white text-sm md:text-base">
-                      {user.email}
-                    </td>
-                    <td className="p-3 text-white text-sm md:text-base">
-                      {user.id || "Unknown"}
-                    </td>
-                    <td className="p-3 text-white text-sm md:text-base">
-                      <select
-                        className="p-1 border rounded bg-slate-900"
-                        value={user.isBlocked.toString()}
-                        onChange={(e) =>
-                          handleStatusUpdate(user.id, e.target.value)
-                        }
-                      >
-                        <option value="true">Blocked</option>
-                        <option value="false">Active</option>
-                      </select>
-                    </td>
-                  </tr>
-                ))}
+              {data?.data?.data.map((user: IUser) => (
+                <tr
+                  key={user.id}
+                  className="border-b border-gray-700 hover:bg-gray-900 transition"
+                >
+                  <td className="p-3 text-white text-sm md:text-base">
+                    {user.name}
+                  </td>
+                  <td className="p-3 text-white text-sm md:text-base">
+                    {user.email}
+                  </td>
+                  <td className="p-3 text-white text-sm md:text-base">
+                    {user.id || "Unknown"}
+                  </td>
+                  <td className="p-3 text-white text-sm md:text-base">
+                    <select
+                      className="p-1 border rounded bg-slate-900"
+                      value={user.isBlocked.toString()}
+                      onChange={(e) =>
+                        handleStatusUpdate(user.id, e.target.value)
+                      }
+                    >
+                      <option value="true">Blocked</option>
+                      <option value="false">Active</option>
+                    </select>
+                  </td>
+                </tr>
+              ))}
             </tbody>
           </table>
         </div>
