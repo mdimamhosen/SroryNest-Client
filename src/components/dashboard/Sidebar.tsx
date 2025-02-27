@@ -27,7 +27,7 @@ const Sidebar = () => {
   return (
     <div>
       <>
-        <div className="flex justify-between  min-h-[100vh] min-w-[220px] flex-col border-r-[1px] border-r-gray-600 bg-slate-800 py-10 px-3 ">
+        <div className="flex justify-between  max-h-[100vh] min-w-[220px] flex-col border-r-[1px] border-r-gray-600 bg-slate-800 py-10 px-3 ">
           <div className="flex flex-col   ">
             <SidebarLink
               key={"home"}
