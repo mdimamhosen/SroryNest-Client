@@ -5,7 +5,7 @@ import SidebarMobile from "../dashboard/SidebarMobile";
 const DashboardLayout = () => {
   return (
     <div>
-      <div className="relative flex  ">
+      <div className="relative flex max-h-[100vh] ">
         <div className="hidden md:flex">
           <Sidebar />
         </div>

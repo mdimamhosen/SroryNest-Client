@@ -132,7 +132,7 @@ const VerifyOrder = () => {
         <div className="border-t pt-4 flex justify-between items-center">
           <p className="text-gray-500 text-sm">Thank you for your purchase?</p>
           <Link
-            to="/dashboard/view-orders"
+            to="/dashboard/user/view-orders"
             className="flex mt-5 font-medium bg-yellow-400 text-black transition-all duration-300 p-2 px-6 hover:bg-yellow-600  hover:text-black rounded-md items-center cursor-pointer gap-2"
           >
             View Order History
