@@ -47,7 +47,7 @@ const Banner = () => {
             preload="auto"
           >
             <source
-              src={`https://asset.cloudinary.com/drxkgsnhy/09dd95c960b2c1a06b4c060f1b03b917`}
+              src={`https://res.cloudinary.com/drxkgsnhy/video/upload/banner_dzq2nn.mp4?_s=vp-2.1.0`}
               type="video/mp4"
             />
           </video>
