@@ -65,7 +65,7 @@ const AllUsers = () => {
               </tr>
             </thead>
             <tbody>
-              {data?.data?.data.map((user: IUser) => (
+              {data?.data?.map((user: IUser) => (
                 <tr
                   key={user.id}
                   className="border-b border-gray-700 hover:bg-gray-900 transition"
