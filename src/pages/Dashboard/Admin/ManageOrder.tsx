@@ -8,6 +8,7 @@ import { toast } from "sonner";
 const ManageOrder = () => {
   const { data, isLoading, isError, refetch } = useGetAllOrdersQuery(undefined);
   const [updateOrder] = useUpdateOrderMutation();
+  console.log(data?.data);
 
   if (isLoading)
     return (
@@ -60,7 +61,7 @@ const ManageOrder = () => {
               <tr key={order.id} className="border text-center">
                 <td className="py-2 px-4 border">{order.id}</td>
                 <td className="py-2 px-4 border">{order.user.name}</td>
-                <td className="py-2 px-4 border">{order.product.title}</td>
+                <td className="py-2 px-4 border">{order?.product?.title}</td>
                 <td className="py-2 px-4 border">{order.quantity}</td>
                 <td className="py-2 px-4 border">${order.totalPrice}</td>
                 <td className="py-2 px-4 border">{order.paymentMethod}</td>
