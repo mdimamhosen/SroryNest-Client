@@ -46,7 +46,10 @@ const Banner = () => {
             controlsList="nodownload"
             preload="auto"
           >
-            <source src={`/src/assets/video/banner.mp4`} type="video/mp4" />
+            <source
+              src={`https://asset.cloudinary.com/drxkgsnhy/09dd95c960b2c1a06b4c060f1b03b917`}
+              type="video/mp4"
+            />
           </video>
         </div>
       </div>
