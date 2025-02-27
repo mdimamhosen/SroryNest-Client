@@ -4,13 +4,16 @@ StoryNest is a Book Shop application built with modern web technologies. It incl
 
 ## Project Overview
 
-StoryNest is an e-commerce platform where users can browse, search, and purchase books. Admins can manage products, orders, and users via a dashboard.
+StoryNest is an e-commerce platform where users can browse, search, and purchase books. Admins can manage products, orders, and users via a role-based dashboard. The platform also integrates React Chart.js for dynamic data visualization.
+
+**Live Link:** [https://srorynest-omega.vercel.app/](https://srorynest-omega.vercel.app/)
 
 ## Technologies Used
 
 - TypeScript
 - React
 - Redux Toolkit (RTK Query)
+- React Chart.js
 - Node.js
 - Express.js
 - MongoDB
@@ -30,13 +33,6 @@ server/
 │   ├─ config/                # Configurations (Database, Env, etc.)
 │   ├─ modules/               # Feature Modules
 │   │   ├─ auth/              # Authentication Module
-│   │   │   ├─ auth.interface.ts
-│   │   │   ├─ auth.service.ts
-│   │   │   ├─ auth.routes.ts
-│   │   │   ├─ auth.controller.ts
-│   │   │   ├─ auth.model.ts
-│   │   │   ├─ auth.const.ts
-│   │   │   └─ auth.utils.ts
 │   │   ├─ product/           # Product Module
 │   │   └─ order/             # Order Module
 │   ├─ middleware/            # Middleware
@@ -59,6 +55,7 @@ client/
 │   ├─ redux/                 # Redux Store and Slices
 │   ├─ routes/                # Route Configurations
 │   ├─ services/              # API Services using RTK Query
+│   ├─ charts/                # Dynamic Charts with React Chart.js
 │   └─ App.tsx                # Main App Component
 │
 └─ .env                       # Environment Variables
@@ -125,6 +122,10 @@ VITE_SURJO_PAY_API_KEY=
 ### Payment Integration
 
 - SurjoPay Payment Gateway
+
+### Data Visualization
+
+- Dynamic charts using React Chart.js
 
 ## Installation
 
