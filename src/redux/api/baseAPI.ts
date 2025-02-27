@@ -13,7 +13,7 @@ import { IErrorData } from "@/types";
 import { logOut, setUser } from "../features/auth/authSlice";
 
 const baseQuery = fetchBaseQuery({
-  baseUrl: "https://stroynest.vercel.app/api",
+  baseUrl: "https://stroynest-taupe.vercel.app",
   credentials: "include",
   prepareHeaders: (headers, { getState }) => {
     const token = (getState() as RootState).auth.token;
@@ -43,7 +43,7 @@ const BaseQueryWithRefreshToken: BaseQueryFn<
     // Send refresh token request here
     console.log("Refresh token request is sending ...");
     // If refresh token is expired, log out the user
-    const res = await fetch("https://stroynest.vercel.app/refresh-token", {
+    const res = await fetch("https://stroynest-taupe.vercel.app/refresh-token", {
       method: "POST",
       credentials: "include",
     });
