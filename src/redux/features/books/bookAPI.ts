@@ -12,23 +12,10 @@ export const authAPI = baseAPI.injectEndpoints({
       }),
     }),
     allBooks: builder.query({
-      query: (args) => {
-        const params = new URLSearchParams();
-        if (args) {
-          Object.entries(args).forEach(([key, value]) => {
-            params.append(key, value as string);
-          });
-        }
+      query: () => {
         return {
           url: `/product/get-all-products`,
           method: "GET",
-          params: params,
-        };
-      },
-      transformResponse: (response: TResponseRedux<IBook[]>) => {
-        return {
-          data: response.data,
-          meta: response.data.meta,
         };
       },
     }),

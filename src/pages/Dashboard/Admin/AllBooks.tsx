@@ -1,11 +1,11 @@
-import { IUSer, selectCurrentUser } from "@/redux/features/auth/authSlice";
+// import { IUSer, selectCurrentUser } from "@/redux/features/auth/authSlice";
 import {
   useAllBooksQuery,
   useDeleteBookMutation,
   useUpdateBookMutation,
 } from "@/redux/features/books/bookAPI";
 import { IBook } from "@/redux/features/books/bookSlice";
-import { useAppSelector } from "@/redux/hooks/hook";
+// import { useAppSelector } from "@/redux/hooks/hook";
 import { useEffect, useState } from "react";
 import { FaEdit, FaTrash } from "react-icons/fa";
 import { toast } from "sonner";
@@ -27,6 +27,7 @@ const BookCategory: string[] = [
 ];
 
 interface BookFormData {
+  _id?: string;
   id: string;
   title: string;
   description: string;
@@ -34,6 +35,7 @@ interface BookFormData {
   stock: string;
   category: string;
   file?: File | null;
+  author?: string;
 }
 
 const AllBooks = () => {
@@ -52,6 +54,7 @@ const AllBooks = () => {
 
   const editBook = (book: IBook) => {
     setSelectedBook({
+      _id: book._id,
       id: book.id,
       title: book.title,
       description: book.description,
@@ -83,7 +86,11 @@ const AllBooks = () => {
   }
 
   if (error) {
-    return <div>Error loading books.</div>;
+    return (
+      <div className="flex min-h-screen justify-center items-center">
+        Error loading books.
+      </div>
+    );
   }
 
   return (
@@ -102,9 +109,10 @@ const AllBooks = () => {
                 <th className="p-4 text-white">Stock</th>
                 <th className="p-4 text-white">Actions</th>
               </tr>
+              {data?.data?.length}
             </thead>
             <tbody>
-              {data?.data?.data
+              {data?.data
                 ?.filter((book: IBook) => !book.isDeleted)
                 .map((book: IBook) => (
                   <tr key={book._id} className="border-b border-gray-700">
@@ -158,7 +166,7 @@ interface ModalProps {
 const Modal: React.FC<ModalProps> = ({ book, closeModal, refetch }) => {
   const [formData, setFormData] = useState<BookFormData>(book);
   const [file, setFile] = useState<File | null>(null);
-  const user = useAppSelector(selectCurrentUser) as IUSer;
+  // const user = useAppSelector(selectCurrentUser) as IUSer;
 
   const handleChange = (
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement>
@@ -174,34 +182,62 @@ const Modal: React.FC<ModalProps> = ({ book, closeModal, refetch }) => {
     }
   };
 
-  const [updateBook] = useUpdateBookMutation(undefined);
+  const [updateBook] = useUpdateBookMutation();
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log("Updated Book:", formData);
     console.log("Updated File:", file);
-
-    // Create a plain object to send as data
-    const dataToSend = {
-      title: formData.title,
-      description: formData.description,
-      price: Number(formData.price),
-      stock: Number(formData.stock),
-      category: formData.category,
-      author: user?._id,
-    };
-
-    // Check if a file is provided and handle it separately
-    const formDataToSend = new FormData();
-    if (file) {
-      formDataToSend.append("file", file);
-    }
-    formDataToSend.append("data", JSON.stringify(dataToSend));
-
     const toastId = toast.info("Updating book...");
     try {
+      // Create a plain object to send as data
+      const dataToSend: {
+        title: string;
+        description: string;
+        price: number;
+        stock: number;
+        category: string;
+        author: string | undefined;
+        image?: string;
+      } = {
+        title: formData.title,
+        description: formData.description,
+        price: Number(formData.price),
+        stock: Number(formData.stock),
+        category: formData.category,
+        author: book.author,
+      };
+
+      // Check if a file is provided and handle it separately
+      const formDataToSend = new FormData();
+      if (file) {
+        const data = new FormData();
+        data.append("file", file);
+        data.append("upload_preset", "unsigned_cloudinary");
+        data.append("cloud_name", "drxkgsnhy");
+
+        const responseCloudinary = await fetch(
+          "https://api.cloudinary.com/v1_1/drxkgsnhy/image/upload",
+          {
+            method: "POST",
+            body: data,
+          }
+        );
+
+        const resData = await responseCloudinary.json();
+        console.log("resData", resData.secure_url);
+
+        dataToSend["image"] = resData.secure_url;
+      }
+
+      console.log("Image Data", dataToSend.image);
+
+      formDataToSend.append("data", JSON.stringify(dataToSend));
+      console.log("FormDataToSend", Object.fromEntries(formDataToSend));
+
       // You need to update your mutation query to handle FormData
-      await updateBook({ id: book.id, data: formDataToSend }).unwrap();
+
+      await updateBook({ id: book._id, data: formDataToSend }).unwrap();
       toast.success("Book updated successfully!", { id: toastId });
       closeModal();
       refetch();
