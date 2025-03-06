@@ -145,7 +145,12 @@ const AddBooks = () => {
       setLoading(false);
     }
   };
-  if (loading) return <div>Loading...</div>;
+  if (loading)
+    return (
+      <div className="flex h-screen justify-center items-center text-center">
+        Loading...
+      </div>
+    );
   return (
     <div className="flex items-center justify-center h-full  ">
       <div className="  mt-10   flex items-center justify-center h-full">
