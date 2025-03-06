@@ -9,9 +9,6 @@ const AdminProfile = () => {
 
   // Fetch profile data with type assertion
   const { data } = useGetProfileDataQuery(id);
-  console.log(data?.data?.totalOrders);
-  console.log(data?.data?.totalSales);
-  console.log(data?.data?.totalProducts);
 
   // Default values to avoid undefined errors
   const numberOfBooks = data?.data?.totalProducts || 0;

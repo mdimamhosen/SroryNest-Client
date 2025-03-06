@@ -68,39 +68,60 @@ const AddBooks = () => {
   const handleFileChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
       const file = e.target.files[0];
-      const allowedTypes = ["image/jpeg", "image/png"];
+      // const allowedTypes = ["image/jpeg", "image/png"];
 
-      if (!allowedTypes.includes(file.type)) {
-        toast.error("Only JPG or PNG images are allowed!");
-        e.target.value = "";
-        return;
-      }
+      // if (!allowedTypes.includes(file.type)) {
+      //   toast.error("Only JPG or PNG images are allowed!");
+      //   e.target.value = "";
+      //   return;
+      // }
 
       setBookData((prev) => ({ ...prev, file: file }));
     }
   };
+  const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (!bookData.file) return;
-
-    const formData = new FormData();
-    formData.append("file", bookData.file);
-    formData.append(
-      "data",
-      JSON.stringify({
-        title: bookData.title,
-        description: bookData.description,
-        price: Number(bookData.price),
-        stock: Number(bookData.stock),
-        category: bookData.category,
-        author: bookData.author,
-      })
-    );
+    setLoading(true);
     const toastId = toast.info("Adding book...");
+
     try {
-      console.log("formData", Object.fromEntries(formData));
-      console.log("bookData", bookData);
+      const data = new FormData();
+
+      data.append("file", bookData.file);
+      data.append("upload_preset", "unsigned_cloudinary");
+      data.append("cloud_name", "drxkgsnhy");
+
+      const responseCloudinary = await fetch(
+        "https://api.cloudinary.com/v1_1/drxkgsnhy/image/upload",
+        {
+          method: "POST",
+          body: data,
+        }
+      );
+
+      const resData = await responseCloudinary.json();
+      console.log("resData", resData);
+
+      const formData = new FormData();
+      // formData.append("file", bookData.file);
+      formData.append(
+        "data",
+        JSON.stringify({
+          title: bookData.title,
+          description: bookData.description,
+          price: Number(bookData.price),
+          stock: Number(bookData.stock),
+          category: bookData.category,
+          author: bookData.author,
+          image: resData.secure_url,
+        })
+      );
+
+      console.log("Form Data ->", Object.fromEntries(formData));
+      // console.log("bookData", bookData);
       addBook(formData).unwrap();
       toast.success("Book added successfully", { id: toastId });
 
@@ -120,9 +141,11 @@ const AddBooks = () => {
     } catch (error) {
       console.log(error);
       toast.error("Failed to add book", { id: toastId });
+    } finally {
+      setLoading(false);
     }
   };
-
+  if (loading) return <div>Loading...</div>;
   return (
     <div className="flex items-center justify-center h-full  ">
       <div className="  mt-10   flex items-center justify-center h-full">
