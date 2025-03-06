@@ -20,7 +20,7 @@ const FeaturedProducts = () => {
         Featured Products
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-3 gap-6 mt-4">
-        {data?.data?.data.slice(0, 6).map((product: IBook) => (
+        {data?.data.slice(0, 6).map((product: IBook) => (
           <div key={product.id} className="border rounded-lg p-4 shadow-md">
             <img
               src={product.image}
